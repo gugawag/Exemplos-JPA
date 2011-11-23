@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich=" http://richfaces.org/rich">
+
+<h:head></h:head>
+<body>
+
+<!-- Herdando do template e definindo a ahrea principal -->
+	<ui:composition template="/template-padrao.xhtml">
+		<ui:define name="principal">
+		
+		<h:panelGrid columns="2">
+			<h:form>
+				<h:outputText value="Nome: "/> <h:inputText value="#{usuarioBean.usuarioPesquisado.nome}" label="Nome" />
+				<h:commandButton action="#{usuarioBean.pesquisarPorNome}" value="Pesquisar" />	
+			</h:form>
+		</h:panelGrid>
+		
+		<br/>
+		<h:panelGrid rendered="#{!empty usuarioBean.usuarioPesquisado.matricula}" columns="2">
+			<h:outputText value="Matrícula: "/> <h:outputText value="#{usuarioBean.usuarioPesquisado.matricula}"/>
+			<h:outputText value="Nome: "/> <h:outputText value="#{usuarioBean.usuarioPesquisado.nome}"/>
+		</h:panelGrid>
+		
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

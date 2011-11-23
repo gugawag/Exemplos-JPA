@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich=" http://richfaces.org/rich">
+
+<h:head></h:head>
+<body>
+
+<!-- Herdando do template e definindo a ahrea principal -->
+	<ui:composition template="/template-padrao.xhtml">
+		<ui:define name="principal">
+			<h:form>
+				<h:dataTable var="usuario" value="#{usuarioBean.usuarios}" border="1">
+					<f:facet name="header">
+						<h:column>
+							Matrícula
+						</h:column>
+						<h:column>
+							Nome
+						</h:column>
+						<h:column>
+							Apagar?
+						</h:column>					
+											
+					</f:facet>
+
+					<h:column>#{usuario.matricula}</h:column>
+					<h:column>#{usuario.nome}</h:column>
+					<h:column><h:commandLink value="X" action="#{usuarioBean.removerUsuario}"/></h:column>
+					<h:column>
+						<h:dataTable var="mensagem" value="#{usuario.mensagens}" border="1">
+							<h:column>#{mensagem.texto}</h:column>						
+						</h:dataTable>
+					</h:column>					
+				</h:dataTable>
+				<br/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
